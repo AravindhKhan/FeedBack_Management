@@ -50,9 +50,9 @@ render() {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   <MDBDropdownItem onClick={()=>{this.onRoute("/assign-PMO")}}>Assign PMO</MDBDropdownItem>
-                  <MDBDropdownItem onClick={()=>{this.onRoute("/add-feedback-question")}}>FeedBack Question</MDBDropdownItem>
-                  {/* <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem> */}
+                  <MDBDropdownItem onClick={()=>{this.onRoute("/feedbackQuestions")}}>FeedBack Question</MDBDropdownItem>
+                  <MDBDropdownItem onClick={()=>{this.onRoute("/add-feedback-question")}}>Add FeedBack Question</MDBDropdownItem>
+                  {/* <MDBDropdownItem href="#!">Something else here</MDBDropdownItem> */}
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavItem>

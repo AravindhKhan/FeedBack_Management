@@ -39,7 +39,7 @@ class ComfigurePMO extends React.Component {
                     </div>
                     <div class="row w-100">
                         <div class="col-sm-3">
-                            <h4 style={{marginTop:"10px",textAlign:"left",marginLeft:"2px"}}>Employee ID</h4>
+                            <h5 style={{marginTop:"10px",textAlign:"left",marginLeft:"2px"}}>Employee ID</h5>
                         </div>
                         <div className="col-sm-9" style={{display:"flex",flexDirection:"row"}}>
                         <div class="col-sm-6">

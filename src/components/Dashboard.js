@@ -1,13 +1,26 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import { connect } from 'react-redux';
 
 class Dashboard extends React.Component{
-    state={
-       totalEvents:8,
-       liveImpacted:877,
-       totalVolunters:45,
-       totalParticipants:45
+    constructor(props){
+        super(props);
+        this.state={
+           totalEvents:8,
+           liveImpacted:877,
+           totalVolunters:45,
+           totalParticipants:45
+        }
+    }
+
+    componentDidMount(){
+        if(this.props.dashboardInfo.reducers){
+          console.log("there is value")
+        }
+        else{
+            console.log("there is no value")
+        }
     }
     render(){
         return(
@@ -69,4 +82,10 @@ class Dashboard extends React.Component{
     }
 }
 
-export default Dashboard
+function mapStateToProps(state){
+    return {
+        dashboardInfo: state
+      };
+}
+
+export default connect(mapStateToProps,null)(Dashboard)

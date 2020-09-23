@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import Footer from './Footer';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
 class Login extends React.Component {
     constructor(props){
@@ -11,16 +12,18 @@ class Login extends React.Component {
     onSubmit(event){
      event.preventDefault();
      console.log("login submit is clicked");
+     this.props.login({userName:"Aravindh",userType:"ADMIN"})
     this.props.history.push({pathname:"/dashboard"});
     }
     render() {
+        console.log("login reducer ",this.props.loginInfo)
         return (
-            <div style={{marginTop:"50px"}} class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-8"></div>
-                    <div class="col-sm-4">
+            <div style={{marginTop:"50px"}} className="container-fluid">
+                <div className="row">
+                    <div className="col-sm-8"></div>
+                    <div className="col-sm-4">
                         <div>
-                            <h1 style={{ color: "blue" }}><i style={{color:"green"}} class="fa fa-handshake" aria-hidden="true"></i>Cognizant <span style={{ color: "green" }}>Outreach</span></h1>
+                            <h1 style={{ color: "blue" }}><i style={{color:"green"}} className="fa fa-handshake" aria-hidden="true"></i>Cognizant <span style={{ color: "green" }}>Outreach</span></h1>
                             <p>feedback management system</p>
                         </div>
                         <div>
@@ -41,6 +44,9 @@ class Login extends React.Component {
                                 <Button variant="primary" type="submit" onClick={(event)=>{this.onSubmit(event)}}>
                                     SIGN ME IN
   </Button>
+  <Button variant="primary" type="button" onClick={this.props.delete}>
+                                    SIGN OUT
+  </Button>
                             </Form>
                         </div>
 
@@ -54,4 +60,18 @@ class Login extends React.Component {
     }
 }
 
-export default withRouter(Login)
+function mapStateToProps(state){
+    return {
+        loginInfo: state.loginReducer
+      };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+       login: (userInfo) => dispatch({type: 'LOGIN',data:userInfo}),
+       delete: () => dispatch({type: 'DELETE'})
+     };
+     
+    }
+
+export default connect(mapStateToProps,mapDispatchToProps) (withRouter(Login))

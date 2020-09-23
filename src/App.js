@@ -13,10 +13,16 @@ import ParticipatedFeedback from './components/feedback/ParticipatedFeedback';
 import NotParticipatedFeedback from './components/feedback/NotParticipatedFeedback';
 import thanksFeedback from './components/feedback/thanksFeedback';
 import Login from './components/Login';
+import { connect } from 'react-redux';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
+      {
+        console.log("in App ",props.count)
+      }
+      <button onClick={props.increment}>+</button>
+   <button  onClick={props.decrement}>-</button>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -48,4 +54,20 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    count: state
+  };
+
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+     
+     increment: () => dispatch({type: 'INCREMENT'}),
+     decrement: () => dispatch({type: 'DECREMENT'})
+   };
+   
+  }
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

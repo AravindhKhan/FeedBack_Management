@@ -56,54 +56,58 @@ class EventReport extends React.Component {
         return (
             <div>
                 <Header />
-                <section>
-                    <h4 style={{ textAlign: "left", backgroundColor: "blue", margin: "10px" }}>ACTIONS</h4>
-                    <div class="row w-100">
-                        <div class="col-sm-6">
+                <div className="container-fluid">
+                    <section style={{ margin: "10px" }} className="card">
+                        <div style={{ height: "40px" }} class="card-head">
+                            <h4 style={{ textAlign: "left", backgroundColor: "blue", height: "40px", paddingTop: "5px", paddingLeft: "5px" }}>ACTIONS</h4>
+                        </div>
+                        <div class="card-body row">
+                            <div class="col-sm-6">
                             <div className="card-body bg-success">
-                                <div class="row">
+                                <div style={{ display: "flex", flexDirection: "row" }}>
                                     <div style={{ marginTop: "30px" }}>
                                         <i class="fa fa-envelope fa-9x" aria-hidden="true"></i>
                                     </div>
-                                    <div class="column">
-                                        <h6 className="text-uppercase">Email Report</h6>
-                                        <div class="container">
-                                            <div class="column">
-                                                <h6 className="text-uppercase">Employee ID</h6>
-                                                <div class="row">
-                                                    <input type="email" name="email" placeholder="Enter Email Address" />
-                                                    <Button variant="dark">Send Email</Button></div>
-                                            </div>
+                                    <div style={{ marginTop: "30px" }}>
+                                        <h6 className="text-uppercase">Email Remainder</h6>
+                                        <div style={{ display: "flex", flexDirection: "row", marginTop: "10px" }}>
+                                            <h6 style={{ marginTop: "25px" }} className="text-uppercase">Sit back and relax while the app sends emails</h6>
+                                            <button className="btn btn-primary">Send Email</button>
                                         </div>
                                     </div>
                                 </div>
                                 <h1 className="display-4"></h1>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
+                            </div>
+                            <div class="col-sm-6">
                             <div className="card bg-warning text-white h-100">
                                 <div className="card-body bg-warning">
-                                    <div class="row">
-                                        <div class="col-sm-9">
-                                            <h6 className="text-uppercase">Email Remainder</h6>
+                                    <div style={{ display: "flex", flexDirection: "row" }}>
+                                        <div style={{ marginTop: "30px" }}>
+                                            <h6 className="text-uppercase">Future Implementation</h6>
                                             <div style={{ display: "flex", flexDirection: "row" }}>
-                                                <h6 className="text-uppercase">Sit back and relax while the app sends emails</h6>
+                                                <h6 className="text-uppercase">This place holder can be used for adding any another ctions in future</h6>
                                             </div>
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div >
                                             <i class="fa fa-lightbulb fa-9x" aria-hidden="true"></i>
                                         </div>
                                     </div>
+                                    <h1 className="display-4"></h1>
                                 </div>
                             </div>
+                            </div>
                         </div>
-                    </div>
-                </section>
-                <section>
-                    <h4 style={{ textAlign: "left", backgroundColor: "blue", margin: "10px" }}>EVENTS</h4>
-                    <div class="row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4"></div>
+                    </section>
+                </div>
+                <div className="container-fluid">
+                <section style={{ margin: "10px" }} className="card">
+                <div style={{ height: "40px" }} class="card-head">
+                            <h4 style={{ textAlign: "left", backgroundColor: "blue", height: "40px", paddingTop: "5px", paddingLeft: "5px" }}>EVENTS</h4>
+                        </div>
+                    <div class="card-body row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
                         <div class="col-sm-4">
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i>CLEAR FILTER</button></div>
@@ -124,6 +128,7 @@ class EventReport extends React.Component {
                         {/* <TableHeaderColumn dataField='Ratings' filter={{ type: 'TextFilter' }}>Ratings</TableHeaderColumn> */}
                     </BootstrapTable>
                 </section>
+                </div>
                 <Footer />
             </div>
         )
