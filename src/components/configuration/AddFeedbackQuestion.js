@@ -108,12 +108,12 @@ class AddFeedbackQuestion extends React.Component {
     }
 
     onCancel() {
-        this.props.history.push({ pathname: '/feedbackQuestions' })
+        this.state.edit ? this.props.history.push({ pathname: '/feedbackQuestions',data:{question:this.state.questions,editMode:this.state.edit}}) : 
+        this.props.history.push({ pathname: '/feedbackQuestions'})
     }
 
     onDelete(){
        var confirm = window.confirm("Do you want to delete this question");
-       console.log(confirm);
        if(confirm){
         this.props.history.push({ pathname: '/feedbackQuestions' })
        }
@@ -122,11 +122,26 @@ class AddFeedbackQuestion extends React.Component {
        }
     }
 
+    onDeleteAnswer(index){
+        var question = this.state.questions;
+        question.answerList.splice(index,1);
+        console.log("updated question ",question);
+        this.setState({
+            questions: question
+        })
+    }
+
     formSubmit(event) {
         event.preventDefault();
-        var value = this.state.questions
-        console.log("form submit ", value);
-        this.props.history.push({ pathname: '/feedbackQuestions' })
+        var totalAnswerLength = this.state.questions.answerList.length;
+        var question = this.state.questions;
+        question.totalAnswer = totalAnswerLength;
+        this.setState({
+            question: question
+        })
+        this.state.edit ? this.props.history.push({ pathname: '/feedbackQuestions',data:{question:this.state.questions,editMode:this.state.edit}}) :
+        this.props.history.push({ pathname: '/feedbackQuestions',data:{question:this.state.questions}})
+        
     }
 
     render() {
@@ -189,7 +204,12 @@ class AddFeedbackQuestion extends React.Component {
                                                         </div>
                                                         <div className="col-sm-8">
                                                             <div className="input-group">
+                                                                <div className="col-sm-6">
                                                                 <input type="text" value={answer.value} className="form-control" onChange={(event) => { this.onAnswerChange(event, index) }} placeholder="Description" />
+                                                                </div>
+                                                                <div className="col-sm-2">
+                                                                <button type="button" onClick={()=>{this.onDeleteAnswer(index)}} className="btn btn-danger"><i className="fa fa-times" aria-hidden="true"></i></button>
+                                                                </div>
                                                             </div>
                                                             <br />
                                                         </div>

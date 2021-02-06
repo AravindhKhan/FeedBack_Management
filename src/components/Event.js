@@ -20,10 +20,12 @@ class Event extends React.Component {
 
     componentDidMount() {
         window.scroll(0, 0);
-        // console.log("in event", this.props);
+        console.log("in event", this.props.location.data);
         if(this.props?.location?.data){
             this.setState({
                 event: this.props?.location?.data
+            },()=>{
+                console.log("in event props ",this.state)
             })
         }
         else{

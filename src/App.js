@@ -14,15 +14,16 @@ import NotParticipatedFeedback from './components/feedback/NotParticipatedFeedba
 import thanksFeedback from './components/feedback/thanksFeedback';
 import Login from './components/Login';
 import { connect } from 'react-redux';
+import chatbot from './chatbot/chatbot';
 
 function App(props) {
   return (
     <div className="App">
-      {
+      {/* {
         console.log("in App ",props.count)
       }
       <button onClick={props.increment}>+</button>
-   <button  onClick={props.decrement}>-</button>
+   <button  onClick={props.decrement}>-</button> */}
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -38,7 +39,7 @@ function App(props) {
         </a>
       </header> */}
       {/* <ComfigurePMO/> */}
-      <Route path="/" exact component={Login}/>
+      <Route path="/" exact component={chatbot}/>
       <div>
       <Switch>
         <Route path="/dashboard" component={Dashboard}/>

@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Button from 'react-bootstrap/Button';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import { connect } from 'react-redux';
 
 class Events extends React.Component {
 
@@ -13,6 +14,9 @@ class Events extends React.Component {
             //   onPageChange: this.onPageChange.bind(this),
             //   onSizePerPageList: this.sizePerPageListChange.bind(this)
         };
+        this.state = {
+            products: []
+        }
     }
 
     //   sizePerPageListChange(sizePerPage) {
@@ -22,88 +26,24 @@ class Events extends React.Component {
     //   onPageChange(page, sizePerPage) {
     //     alert(`page: ${page}, sizePerPage: ${sizePerPage}`);
     //   }
-    state = {
-        products: [{
-            id: "EVENT_1",
-            month: "DEC",
-            base_locatio: "United Kingdom",
-            council_Name: "Outreach UK",
-            beneficiary_Name: "ST.Edwards",
-            date: "12 Dec 2020",
-            event_Name: "Christmas fair to save a swimming pool",
-            event_description: "The school is hosting a christmas to raise money to refurnish their swimming pool for the childrens who can swim in their swimming pool",
-            event_status: "Approved",
-            event_category: "Other Cimmunity Program",
-            event_feedback: 4,
-            event_averageRating: 4,
-            event_participated: [{
-                Rating: 5,
-                Likes: "nice",
-                DisLike: "travel"
-            },
-            {
-                Rating: 3,
-                Likes: "swimming",
-                DisLike: "snacks can be provided"
-            }],
-            statistics: {
-                averageRatings: 4,
-                volunteres: 4,
-                volunterring_hours: 24,
-                overall_Hours: 24,
-                travel_hours: 10,
-                lives_impacted: 0
-            },
-            poc_Details: [
-                {
-                    employee_id: 563546,
-                    employee_Name: "Neeli",
-                    employee_contactNumber: 8974364757
-                }
-            ]
-        }, {
-            id: "EVENT_2",
-            month: "JAN",
-            base_locatio: "Singapore",
-            council_Name: "Outreach Singapore",
-            beneficiary_Name: "Lion",
-            date: "12 Dec 2020",
-            event_Name: "Sinapore Science Exhibition",
-            event_description: "The science exhibition occuring in Singapore is famous in world.The scientific expo is organized by Stark",
-            event_status: "Approved",
-            event_category: "Stark Community",
-            event_feedback: 4,
-            event_averageRating: 4,
-            event_participated: [{
-                Rating: 5,
-                Likes: "nice",
-                DisLike: "travel"
-            },
-            {
-                Rating: 3,
-                Likes: "robos",
-                DisLike: "dances"
-            }],
-            statistics: {
-                averageRatings: 4,
-                volunteres: 4,
-                volunterring_hours: 24,
-                overall_Hours: 24,
-                travel_hours: 10,
-                lives_impacted: 0
-            },
-            poc_Details: [
-                {
-                    employee_id: 563546,
-                    employee_Name: "Tony",
-                    employee_contactNumber: 8725452645
-                }
-            ]
-        }]
-    }
+    
 
     componentDidMount(){
         window.scroll(0,0);
+        console.log("in events ", this.props.eventsInfo);
+        var productList = this.props.eventsInfo.events;
+        this.setState({
+            products: productList
+        })
+    }
+
+    componentWillReceiveProps(){
+        // this.state.products.push(this.props.eventsInfo.events)
+        // console.log("products ",this.state.products)
+        // var productList = this.props.eventsInfo.events;
+        // this.setState({
+        //     products: productList
+        // })
     }
 
     buttonFormatter(cell, row, enumObject, rowIndex) {
@@ -118,6 +58,7 @@ class Events extends React.Component {
         //   console.log("row ",row);
         //   console.log("rowIndex ",rowIndex);
         this.props.history.push({ pathname: "/event", data: this.state.products[enumObject] });
+        console.log("in events props",this.props);
     }
 
     render() {
@@ -126,15 +67,15 @@ class Events extends React.Component {
                 <Header />
                 <div className="container-fluid">
                     <section style={{ margin: "10px" }} className="card">
-                        <div style={{ height: "40px" }} class="card-head">
+                        <div style={{ height: "40px" }} className="card-head">
                             <h4 style={{ textAlign: "left", backgroundColor: "blue", height: "40px", paddingTop: "5px", paddingLeft: "5px" }}>ACTIONS</h4>
                         </div>
-                        <div class="card-body row">
-                            <div class="col-sm-6">
+                        <div className="card-body row">
+                            <div className="col-sm-6">
                             <div className="card-body bg-success">
                                 <div style={{ display: "flex", flexDirection: "row" }}>
                                     <div style={{ marginTop: "30px" }}>
-                                        <i class="fa fa-envelope fa-9x" aria-hidden="true"></i>
+                                        <i className="fa fa-envelope fa-9x" aria-hidden="true"></i>
                                     </div>
                                     <div style={{ marginTop: "30px" }}>
                                         <h6 className="text-uppercase">Email Remainder</h6>
@@ -147,7 +88,7 @@ class Events extends React.Component {
                                 <h1 className="display-4"></h1>
                             </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div className="col-sm-6">
                             <div className="card bg-warning text-white h-100">
                                 <div className="card-body bg-warning">
                                     <div style={{ display: "flex", flexDirection: "row" }}>
@@ -158,7 +99,7 @@ class Events extends React.Component {
                                             </div>
                                         </div>
                                         <div >
-                                            <i class="fa fa-lightbulb fa-9x" aria-hidden="true"></i>
+                                            <i className="fa fa-lightbulb fa-9x" aria-hidden="true"></i>
                                         </div>
                                     </div>
                                     <h1 className="display-4"></h1>
@@ -170,27 +111,31 @@ class Events extends React.Component {
                 </div>
                 <div className="container-fluid">
                 <section style={{ margin: "10px" }} className="card">
-                <div style={{ height: "40px" }} class="card-head">
+                <div style={{ height: "40px" }} className="card-head">
                             <h4 style={{ textAlign: "left", backgroundColor: "blue", height: "40px", paddingTop: "5px", paddingLeft: "5px" }}>EVENTS</h4>
                         </div>
-                    <div class="card-body row">
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i>CLEAR FILTER</button></div>
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-primary"><i class="fa fa-file-excel" aria-hidden="true"></i>DOWNLOAD EXCEL</button>
+                    <div className="card-body row">
+                        <div className="col-sm-4"></div>
+                        <div className="col-sm-4"></div>
+                        <div className="col-sm-4">
+                            <div className="btn-group" role="group">
+                                <button type="button" className="btn btn-danger"><i className="fa fa-times" aria-hidden="true"></i>CLEAR FILTER</button></div>
+                            <div className="btn-group" role="group">
+                                <button type="button" className="btn btn-primary"><i className="fa fa-file-excel" aria-hidden="true"></i>DOWNLOAD EXCEL</button>
                             </div>
                         </div>
                     </div>
-                    <BootstrapTable data={this.state.products} pagination options={this.options}>
+                    <BootstrapTable className="BootstrapTable" scrollY data={this.state.products} pagination options={this.options}>
                         {/* <TableHeaderColumn dataField='id' isKey>Action</TableHeaderColumn> */}
-                        <TableHeaderColumn dataField="button" dataFormat={this.buttonFormatter.bind(this)} >Action</TableHeaderColumn>
-                        <TableHeaderColumn dataField='id' filter={{ type: 'TextFilter' }} isKey export={false}> Event ID</TableHeaderColumn>
-                        <TableHeaderColumn dataField='month' filter={{ type: 'TextFilter' }}>Month</TableHeaderColumn>
-                        <TableHeaderColumn dataField='base_locatio' filter={{ type: 'TextFilter' }}>Base Location</TableHeaderColumn>
-                        <TableHeaderColumn dataField='council_Name' filter={{ type: 'TextFilter' }}>Council Name</TableHeaderColumn>
+                        <TableHeaderColumn dataField="button" dataFormat={this.buttonFormatter.bind(this)} headerAlign='center' headerAlign='center' dataAlign='center'>Action</TableHeaderColumn>
+                        <TableHeaderColumn dataField='id' filter={{ type: 'TextFilter' }} isKey headerAlign='center' dataAlign='center' export={false}> Event ID</TableHeaderColumn>
+                        <TableHeaderColumn dataField='month' filter={{ type: 'TextFilter' }} headerAlign='center' dataAlign='center'>Month</TableHeaderColumn>
+                        <TableHeaderColumn dataField='base_locatio' filter={{ type: 'TextFilter' }} headerAlign='center' dataAlign='center'>Base Location</TableHeaderColumn>
+                        <TableHeaderColumn dataField='council_Name' filter={{ type: 'TextFilter' }} headerAlign='center' dataAlign='center'>Council Name</TableHeaderColumn>
+                        <TableHeaderColumn dataField='beneficiary_Name' filter={{ type: 'TextFilter' }} headerAlign='center' dataAlign='center'>Beneficiary Name</TableHeaderColumn>
+                        <TableHeaderColumn dataField='beneficiary_Name' filter={{ type: 'TextFilter' }}>Beneficiary Name</TableHeaderColumn>
+                        <TableHeaderColumn dataField='beneficiary_Name' filter={{ type: 'TextFilter' }}>Beneficiary Name</TableHeaderColumn>
+                        <TableHeaderColumn dataField='beneficiary_Name' filter={{ type: 'TextFilter' }}>Beneficiary Name</TableHeaderColumn>
                         <TableHeaderColumn dataField='beneficiary_Name' filter={{ type: 'TextFilter' }}>Beneficiary Name</TableHeaderColumn>
                         {/* <BootstrapTable data={ this.state.products } options={ this.options }>
         <TableHeaderColumn dataField='name' filter={ { type: 'TextFilter' } }>Event ID</TableHeaderColumn>
@@ -208,4 +153,10 @@ class Events extends React.Component {
     }
 }
 
-export default Events
+function mapStateToProps(state){
+   return {
+       eventsInfo: state.eventsReducer
+   }
+}
+
+export default connect(mapStateToProps,null)(Events)

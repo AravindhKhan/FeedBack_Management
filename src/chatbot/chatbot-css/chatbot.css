@@ -1,0 +1,74 @@
+.inputBox {
+    border: none;
+  border-radius: 50%;
+    /* display:none; */
+    padding: 20px; 
+    width: 80%;
+    height: 15px;   
+    flex-grow:2; 
+}
+
+input.inputBox:focus {
+    outline-width: 0;
+}
+
+.plusbutton {
+    outline-width: 0;
+    border: none;
+  }
+
+.chatbot-footer{
+    display:flex;
+  flex-direction:row;
+  border: 2px solid #609;
+  padding:2px;
+  border-radius: 25px;
+}
+
+.chatbot-header { 
+    height: 42px;
+    padding: 0.5rem;
+}
+
+.chatbot-body{
+    height:calc(80vh - 100px);
+    overflow: scroll;
+    padding-top: 2px;
+}
+
+.chatbot{
+    border-radius:5%;
+    height:80vh;
+    width:320px;
+    box-shadow:0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color:white;
+    display: flex;
+    flex-direction: column;
+}
+
+.sender{
+  border-style: solid;
+  border-color: rgb(216, 170, 216);
+  border-radius: 15px 50px 30px 5px;
+  text-align: left;
+  padding: 1px;
+  font-size:15px;
+  margin: 15px
+}
+
+.receiver{
+    text-align:right;
+    border-radius:80px 30px 0 80px;
+    border-color: #73AD21;
+    border-style:solid;
+    font-size:15px;
+    padding: 5px;
+    margin: 15px
+}
+
+    @media only screen and (max-width: 700px) {
+        .chatbot {
+            width:100%;
+            height:100vh
+        }
+      }

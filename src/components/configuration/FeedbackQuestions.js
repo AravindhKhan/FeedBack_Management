@@ -10,6 +10,7 @@ class FeedbackQuestion extends React.Component {
     
     state = {
         products: [{
+            id:0,
             question: "Stark Expo when happended?",
             choices:"Allow Multiple Answer",
             answerList:[
@@ -26,6 +27,7 @@ class FeedbackQuestion extends React.Component {
             feedbackType: "Participated"
         },
         {
+            id:1,
             question: "when did you joined in CTS?",
             choices:"Allow Multiple Answer",
             answerList:[
@@ -44,6 +46,18 @@ class FeedbackQuestion extends React.Component {
         counter:0
     }
 
+    componentDidMount(){
+        if(this.props?.location?.data?.editMode){
+            var questionId = this.props.location.data.question.id;
+            var question = this.props.location.data.question;
+            var duplicateArray = [...this.state.products];
+            duplicateArray[questionId] = question;
+            this.setState({
+                products: duplicateArray
+            })
+        }
+    }
+
     buttonFormatter(cell,row,enumObject,rowIndex){
         // console.log("clicked ",event);
         // console.log("clicked ",row);
@@ -56,7 +70,6 @@ class FeedbackQuestion extends React.Component {
     }
 
     onAddQuestion=()=>{
-        console.log("this props",this.props)
        this.props.history.push("/add-feedback-question"); 
     }
     render() {
